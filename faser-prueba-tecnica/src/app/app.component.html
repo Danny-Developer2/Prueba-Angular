@@ -1,0 +1,48 @@
+<div class="container mt-5">
+	<h1 class="text-center mb-4">Prueba técnica - Estudio Faser</h1>
+	<h2 class="text-center mb-4">Listado de tareas</h2>
+  
+	<!-- Formulario para agregar tarea -->
+	<div class="mb-4">
+	  <div class="d-flex justify-content-center gap-3">
+		<input type="text" [(ngModel)]="nuevoTitulo" class="form-control w-25" placeholder="Ingrese el título">
+		<input type="number" [(ngModel)]="nuevaDuracion" class="form-control w-25" placeholder="Ingrese la duración (minutos)">
+		<button (click)="agregarTarea()" class="btn btn-primary">Agregar tarea</button>
+	  </div>
+	</div>
+  
+	<!-- Tabla de tareas -->
+	<table class="table table-bordered table-striped">
+	  <thead class="table-dark">
+		<tr>
+		  <th class="text-center" (click)="ordenar('titulo')">Título</th>
+		  <th class="text-center" (click)="ordenar('minutos')">Duración (minutos)</th>
+		  <th class="text-center">Seleccionar</th>
+		  <th class="text-center">Destacar</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr *ngFor="let tarea of tareas" [class.destacada]="tarea.destacada">
+		  <td>{{ tarea.titulo }}</td>
+		  <td>{{ tarea.minutos }}</td>
+		  <td class="text-center">
+			<label>
+			  <input type="checkbox" [(ngModel)]="tarea.seleccionada" class="form-check-input">
+			</label>
+		  </td>
+		  <td class="text-center">
+			<label>
+			  <input type="checkbox" [(ngModel)]="tarea.destacada" class="form-check-input">
+			</label>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+  
+	<!-- Botones de acción -->
+	<div class="d-flex justify-content-center gap-3 mt-4">
+	  <button (click)="eliminarTareas()" class="btn btn-danger">Eliminar seleccionadas</button>
+	  <button (click)="ordenarAleatorio()" class="btn btn-warning">Ordenar aleatoriamente</button>
+	</div>
+  </div>
+  
